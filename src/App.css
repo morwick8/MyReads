@@ -110,18 +110,17 @@ body, .app {
 
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap
 }
 .books-grid li {
   padding: 10px 15px;
-  text-align: left;
+  text-align: left
 }
 
 .book {
-  width: 140px;
-  vertical-align: top;
-  dipslay: inline-block;
+  width: 140px
 }
+
 .book-title,
 .book-authors {
   font-size: 0.8em;
@@ -131,6 +130,8 @@ body, .app {
 }
 .book-authors {
   color: #999;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
 .book-top {
@@ -138,8 +139,7 @@ body, .app {
   height: 200px;
   width: 140px;
   align-items: flex-end;
-  vertical-align: top;
-  display: inline-block;
+
 
 }
 

@@ -10,18 +10,18 @@ import MyReadsPage from './MyReadsPage'
 class App extends React.Component {
   
  
-  render() {
-    return (
-      	<div>
- 			<Route exact path="/" render={() => (
-      			<MyReadsPage/>
-      		)}/>
-			<Route path="/search" render={() => (
-            	<SearchPage/> 
-       		)}/>                 
-       	</div>
-    )
-  }
+render() {
+  return (
+    <div>
+ 	  <Route exact path="/" render={() => (
+      	<MyReadsPage/>
+      )}/>
+	  <Route path="/search" render={() => (
+        <SearchPage/> 
+      )}/>                 
+    </div>
+  )
+}
 }
 
 export default App

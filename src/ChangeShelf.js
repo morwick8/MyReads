@@ -8,11 +8,11 @@ class ChangeShelf extends React.Component {
 
 static propTypes = {
   book: PropTypes.object.isRequired,
-   shelf: PropTypes.string.isRequired
- }
+  shelf: PropTypes.string.isRequired
+}
 
-state =
-{ 
+state = { 
+
 }
 
 UpdateBook(book, shelf) {
@@ -25,15 +25,15 @@ render() {
   	<div className="book-shelf-changer">
      	<select value={this.props.book.shelf}
     		onChange={(e) => this.UpdateBook(this.props.book, e.target.value)}>
-				<option value="move" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
-        </select>
-	</div>
-     )
-  }
+				  <option value="move" disabled>Move to...</option>
+          <option value="currentlyReading">Currently Reading</option>
+          <option value="wantToRead">Want to Read</option>
+          <option value="read">Read</option>
+          <option value="none">None</option>
+      </select>
+    </div>
+  )
+}
 }
 
 
