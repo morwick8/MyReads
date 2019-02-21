@@ -32,7 +32,11 @@ updateShelves() {
     })
 }
 
-	
+componentDidUpdate() {
+  BooksAPI.getAll().then((books) => {
+    this.setState( {books} )
+  })
+}
 
   
 
@@ -51,8 +55,8 @@ updateShelves() {
     					books={this.state.books} 
 						shelf="currentlyReading"
 						shelfName="Currently Reading"
-						onUpdateBook={this.updateBook}
-					/>
+		        onUpdateBook={this.updateBook}
+			/>
 					<ListCurrentReads 
     					books={this.state.books} 
 						shelf="wantToRead"

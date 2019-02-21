@@ -27,26 +27,29 @@ componentDidMount() {
     
 
 onSearch(query) {
+   var searchedBooks = []
     if (query !== '') {
   		BooksAPI.search(query, 25).then(results => {
-    		if (!results || results.error) {
-              this.setState({searchedBooks: []})
-			} else {
-              this.setState({searchedBooks: results})
-           }})
-   	} else {
-         this.setState({searchedBooks: this.props.books})                          
+    		if (results.error) {
+              searchedBooks = []
+			 } else {
+              searchedBooks = results
+  	   }
+       this.setState({searchedBooks})
+       searchedBooks.map(searchedBook => 
+          (this.state.books.filter((book) => book.id === searchedBook.id)
+          .map(book => searchedBook.shelf = book.shelf)))
+        
+     })
+    } else {
+      this.setState({searchedBooks})
     }
-    this.state.searchedBooks.map(searchedBook => {
-    	var result = this.props.books.find(book => book.id === searchedBook.id)
-		this.state.showingBooks.concat(result) 
-      	return this.state.showingBooks
-    })
+    
 }    
 
 updateQuery = (query) => {
-  this.setState( {query: query.trim()} )
-  this.setState( {showingBooks: this.onSearch(query)} )
+  this.setState( {query: query.trim()})
+  this.onSearch(query)
 
 }
     
@@ -56,12 +59,16 @@ render() {
 *   select/option box for readStatus - onChange of readStatus
  */
 	const query = this.state.query
+  const books = this.state.books
+  const shelf = this.state.shelf
+  const shelfName = this.state.shelfName
 
 
 /* eslint-disable */
 //	
 
 	return (
+
        <div className="search-books">
          <div className="search-books-bar">
             <Link className='close-search' to='/'>Close</Link>
@@ -77,10 +84,13 @@ render() {
 			  </div>
 			</div>
 			<div className="search-book-results">
-				<ol className="books-grid">
-					{this.state.showingBooks.map(book => 
-						<ShowBook book={book} key={book.id} />
-					)}
+        <ol className="books-grid">
+          {this.state.searchedBooks.map((book) => (
+            <li key={book.title}>
+              <ShowBook book={book} shelf={shelf} />                
+            </li>
+          ))}
+	
 				</ol>
 			</div>
 		</div>

@@ -119,6 +119,8 @@ body, .app {
 
 .book {
   width: 140px;
+  vertical-align: top;
+  dipslay: inline-block;
 }
 .book-title,
 .book-authors {

@@ -7,7 +7,9 @@ import ChangeShelf from './ChangeShelf'
 class ShowBook extends React.Component {
 
  static propTypes = {
+  key: PropTypes.string.isRequired,
    book: PropTypes.object.isRequired,
+   shelf: PropTypes.string.isRequired
 }
 
 state = {
@@ -15,16 +17,14 @@ state = {
 }
 render() {
   return (
-     	<li key={this.props.book.id}>
-  		  <div className="book">
+   		  <div className="book">
 			<div className="book-top">
     			<div className="book-cover" style={{ width: 128, height: 193, backgroundImage:(`url(${this.props.book.imageLinks.thumbnail})`) }}></div>
-				<ChangeShelf book={this.props.book}/>
+				<ChangeShelf book={this.props.book} shelf={this.props.shelf}/>
 				<div className="book-title">{this.props.book.title}</div>
         		<div className="book-authors">{this.props.book.authors}</div>
 			</div>
 		  </div>
-        </li>
   )
 }
 }

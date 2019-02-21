@@ -28,7 +28,7 @@ render() {
                 	.filter((book) => book.shelf === shelf)
   					.map((book) => (
                      	<li key={book.title}>
- <ShowBook book={book} />                
+ <ShowBook book={book} shelf={shelf} />                
 </li>
 					 ))}
 					</ol>
