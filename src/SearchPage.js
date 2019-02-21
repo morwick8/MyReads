@@ -25,23 +25,22 @@ componentDidMount() {
     
 
 onSearch(query) {
-   var searchedBooks = []
-    if (query !== '') {
-  		BooksAPI.search(query, 25).then(results => {
-    		if (results.error) {
-          searchedBooks = []
-        } else {
-          searchedBooks = results
-        }
-        this.setState({searchedBooks})
-        searchedBooks.map(searchedBook => 
-          (this.state.books.filter((book) => book.id === searchedBook.id)
-          .map(book => searchedBook.shelf = book.shelf)))
-      })
-    } else {
+  var searchedBooks = []
+  if (query !== '') {
+  	BooksAPI.search(query, 25).then(results => {
+      if (results.error) {
+        searchedBooks = []
+      } else {
+        searchedBooks = results
+      }
       this.setState({searchedBooks})
-    }
-    
+      searchedBooks.map(searchedBook => 
+        (this.state.books.filter((book) => book.id === searchedBook.id)
+        .map(book => searchedBook.shelf = book.shelf)))
+    })
+  } else {
+    this.setState({searchedBooks})
+  }    
 }    
 
 updateQuery = (query) => {
@@ -51,29 +50,27 @@ updateQuery = (query) => {
 }
     
 render() {
-
-	const query = this.state.query
+  const query = this.state.query
   const books = this.state.books
   const shelf = this.state.shelf
   const shelfName = this.state.shelfName
 
-	return (
-
+  return (
     <div className="search-books">
       <div className="search-books-bar">
         <Link className='close-search' to='/'>Close</Link>
           <div className="search-books-input-wrapper">
-				    <input 
-      				className="search-field"
-      				type="text" 
-      				placeholder="Search by title or author" 
-      				value={query}
-              onChange={(event) => 
-                this.updateQuery(event.target.value)}
-				    /> 
+			<input 
+      			className="search-field"
+      			type="text" 
+      			placeholder="Search by title or author" 
+      			value={query}
+              	onChange={(event) => 
+                	this.updateQuery(event.target.value)}
+			/> 
           </div>
-			</div>
-		  <div className="search-book-results">
+	  </div>
+	  <div className="search-book-results">
         <ol className="books-grid">
           {this.state.searchedBooks.map((book) => (
             <li className="books-grid" key={book.title}>
@@ -81,9 +78,9 @@ render() {
             </li>
           ))}
         </ol>
-		  </div>
-		</div>
-	)
+	  </div>
+	</div>
+  )
 }
 }
  
